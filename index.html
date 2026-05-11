@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Logika Matematika Terapan | Pernyataan & Operasi Logika</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f7fb;
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      color: #1e2a3e;
+      padding: 2rem 1rem;
+    }
+
+    /* container utama */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      padding: 2rem 1.8rem;
+    }
+
+    /* header */
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 1.5rem;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1e3c72, #2b4c7c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .header p {
+      color: #3a546d;
+      margin-top: 0.6rem;
+      font-size: 1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* card materi */
+    .materi-card {
+      background: #ffffff;
+      border: 1px solid #e9edf2;
+      border-radius: 24px;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+      transition: box-shadow 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+    }
+
+    .materi-card:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      border-color: #dce3ec;
+    }
+
+    .judul-section {
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-left: 5px solid #2c6e9e;
+      padding-left: 18px;
+    }
+
+    .judul-section .simbol {
+      font-family: 'Courier New', 'Fira Code', monospace;
+      background: #eef2f8;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #1e4a76;
+    }
+
+    .sub-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin: 1.2rem 0 0.5rem 0;
+      color: #2c3e50;
+      border-bottom: 1.5px dashed #cbd5e1;
+      padding-bottom: 5px;
+      display: inline-block;
+    }
+
+    .pengertian, .rumus, .contoh {
+      margin-top: 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .rumus {
+      background: #f8fafc;
+      padding: 0.8rem 1rem;
+      border-radius: 18px;
+      font-family: monospace;
+      font-size: 1rem;
+      border-left: 3px solid #3b82f6;
+    }
+
+    .contoh-block {
+      background: #fefce8;
+      padding: 0.8rem 1.2rem;
+      border-radius: 20px;
+      border-left: 4px solid #eab308;
+      margin: 1rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 0.8rem;
+      font-size: 0.95rem;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    th {
+      background-color: #eef2f9;
+      color: #1e2f3e;
+      font-weight: 600;
+      padding: 12px 8px;
+      border: 1px solid #dce3ec;
+    }
+
+    td {
+      border: 1px solid #e2e8f0;
+      padding: 10px 8px;
+      text-align: center;
+      background-color: white;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #fafcff;
+    }
+
+    .badge-benar {
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 500;
+      border-radius: 30px;
+      padding: 2px 12px;
+      display: inline-block;
+    }
+
+    .badge-salah {
+      background: #ffe4e2;
+      color: #b91c1c;
+      border-radius: 30px;
+      padding: 2px 12px;
+      display: inline-block;
+    }
+
+    .catatan {
+      background: #f1f5f9;
+      padding: 0.9rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      color: #2d4a6e;
+      border: 1px solid #e2edf7;
+    }
+
+    .grid-ringkasan {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .ringkasan-tabel table {
+      min-width: 280px;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #5b6e8c;
+      border-top: 1px solid #e2edf2;
+      padding-top: 1.8rem;
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        padding: 1.2rem;
+      }
+      .judul-section {
+        font-size: 1.4rem;
+      }
+      table, .ringkasan-tabel table {
+        font-size: 0.85rem;
+      }
+      .materi-card {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1> Logika Matematika</h1>
+    <p style="text-align: justify;"> Logika Matematika adalah cabang matematika yang mempelajari cara berpikir secara logis menggunakan simbol, pernyataan, dan aturan tertentu untuk menentukan benar atau salahnya suatu pernyataan.
+    <p style="text-align: justify;"> Berikut Pernyataan, Konjungsi, Disjungsi, Implikasi & Biimplikasi Lengkap dengan tabel kebenaran dan contoh sehari-hari</p>
+  </div>
+
+  <!-- 1. PERNYATAAN (PROPOSISI) -->
+  <div class="materi-card">
+    <div class="judul-section">
+      <span> 1. Pernyataan (Proposisi)</span>
+    </div>
+    <div class="pengertian">
+      <strong> Pengertian</strong><br>
+      Pernyataan adalah kalimat yang memiliki nilai kebenaran, yaitu <strong>benar</strong> atau <strong>salah</strong>. 
+      (Bukan pertanyaan, perintah, atau seruan)
+    </div>
+    <div class="rumus">
+      <strong> Simbol / Notasi:</strong> biasa dilambangkan dengan huruf kecil <code>p, q, r, ...</code>
+    </div>
+    <div class="contoh">
+      <strong> Contoh:</strong>
+      <div class="contoh-block">
+        <code>p : "2 + 3 = 5"</code> → pernyataan ini <span class="badge-benar">BENAR</span><br>
+        <code>q : "10 adalah bilangan ganjil"</code> → pernyataan ini <span class="badge-salah">SALAH</span>
+      </div>
+      Setiap proposisi hanya memiliki satu nilai kebenaran (tidak bisa keduanya).
+    </div>
+    <a href="https://youtu.be/aMVQq1kshao?si=gk73IXXVkfC7KcoC">
+    Tonton video berikut
+</a>
+  </div>
+
+  <!-- 2. KONJUNGSI -->
+  <div class="materi-card">
+    <div class="judul-section">
+      <span> 2. Konjungsi (∧)</span>
+      <span class="simbol">p ∧ q</span>
+    </div>
+    <div class="pengertian">
+      <strong> Pengertian:</strong> Konjungsi adalah gabungan dua pernyataan menggunakan kata <strong>"dan"</strong>.<br>
+      Konjungsi bernilai <strong>benar</strong> jika <strong>kedua pernyataan benar</strong>.
+    </div>
+    <div class="rumus">
+      <strong> Rumus / Simbol:</strong> p ∧ q &nbsp;|&nbsp; dibaca: "<strong>p dan q</strong>"
+    </div>
+    <div class="sub-title"> Tabel Kebenaran Konjungsi</div>
+    <table>
+      <thead>
+        <tr><th>p</th><th>q</th><th>p ∧ q</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>B</td><td>B</td><td class="badge-benar">B</td></tr>
+        <tr><td>B</td><td>S</td><td class="badge-salah">S</td></tr>
+        <tr><td>S</td><td>B</td><td class="badge-salah">S</td></tr>
+        <tr><td>S</td><td>S</td><td class="badge-salah">S</td></tr>
+      </tbody>
+    </table>
+    <div class="contoh">
+      <strong> Contoh kalimat:</strong><br>
+      <code>p : "Hari ini cerah"</code><br>
+      <code>q : "Saya pergi ke sekolah"</code><br>
+      ➜ <strong>p ∧ q</strong> = "Hari ini cerah <strong>dan</strong> saya pergi ke sekolah."<br>
+      Pernyataan majemuk ini benar <strong>hanya jika</strong> kedua bagiannya benar.
+    </div>
+    <a href="https://youtu.be/EY1pAkQvBMQ?si=Mvufc0gLIUCZDbj5">
+    Tonton video berikut
+</a>
+  </div>
+
+  <!-- 3. DISJUNGSI -->
+  <div class="materi-card">
+    <div class="judul-section">
+      <span> 3. Disjungsi (∨)</span>
+      <span class="simbol">p ∨ q</span>
+    </div>
+    <div class="pengertian">
+      <strong> Pengertian:</strong> Disjungsi adalah gabungan dua pernyataan menggunakan kata <strong>"atau"</strong> (inklusif).<br>
+      Disjungsi bernilai salah hanya jika kedua pernyataan salah.
+    </div>
+    <div class="rumus">
+      <strong> Rumus / Simbol:</strong> p ∨ q &nbsp;|&nbsp; dibaca: "<strong>p atau q</strong>"
+    </div>
+    <div class="sub-title"> Tabel Kebenaran Disjungsi</div>
+    <table>
+      <thead><tr><th>p</th><th>q</th><th>p ∨ q</th></tr></thead>
+      <tbody>
+        <tr><td>B</td><td>B</td><td class="badge-benar">B</td></tr>
+        <tr><td>B</td><td>S</td><td class="badge-benar">B</td></tr>
+        <tr><td>S</td><td>B</td><td class="badge-benar">B</td></tr>
+        <tr><td>S</td><td>S</td><td class="badge-salah">S</td></tr>
+      </tbody>
+    </table>
+    <div class="contoh">
+      <strong> Contoh kalimat:</strong><br>
+      <code>p : "Saya belajar"</code><br>
+      <code>q : "Saya bermain"</code><br>
+      ➜ <strong>p ∨ q</strong> = "Saya belajar <strong>atau</strong> bermain."<br>
+      Pernyataan ini salah hanya jika saya tidak belajar dan tidak bermain.
+    </div>
+    <a href="https://youtu.be/SA_A-ULDRhE?si=Xf1SN5I3_aOhuu39
+(disjungsi)">
+    Tonton video berikut
+</a>
+  </div>
+
+  <!-- 4. IMPLIKASI (p → q) -->
+  <div class="materi-card">
+    <div class="judul-section">
+      <span> 4. Implikasi (→)</span>
+      <span class="simbol">p → q</span>
+    </div>
+    <div class="pengertian">
+      <strong> Pengertian:</strong> Implikasi adalah pernyataan majemuk "jika ... maka ...".<br>
+      Menyatakan bahwa kebenaran pernyataan pertama (anteseden) menjamin </strong> kebenaran pernyataan kedua (konsekuen).<br>
+      Implikasi hanya salah jika anteseden <strong>benar</strong> tetapi konsekuen <strong>salah</strong>.
+    </div>
+    <div class="rumus">
+      <strong> Notasi:</strong> p → q &nbsp;|&nbsp; dibaca: "<strong>jika p maka q</strong>" atau "p implies q"
+    </div>
+    <div class="sub-title"> Tabel Kebenaran Implikasi</div>
+    <table>
+      <thead><tr><th>p</th><th>q</th><th>p → q</th></tr></thead>
+      <tbody>
+        <tr><td>B</td><td>B</td><td class="badge-benar">B</td></tr>
+        <tr><td>B</td><td>S</td><td class="badge-salah">S</td></tr>
+        <tr><td>S</td><td>B</td><td class="badge-benar">B</td></tr>
+        <tr><td>S</td><td>S</td><td class="badge-benar">B</td></tr>
+      </tbody>
+    </table>
+    <div class="catatan">
+       <strong>Catatan penting:</strong> Dalam logika, jika anteseden (p) salah, implikasi otomatis dianggap <strong>benar</strong>, terlepas dari nilai q. 
+      Ini dinamakan <em>vacuous truth</em>.
+    </div>
+    <div class="contoh">
+      <strong> Contoh sehari-hari:</strong> "Jika hari ini hujan (p), maka jalanan akan basah (q)."<br>
+      - Hujan & jalan basah → <strong>benar</strong> <br>
+      - Hujan & jalan tidak basah → <strong>salah</strong> <br>
+      - Tidak hujan (meskipun jalan basah karena banjir) → <strong>tetap benar</strong> (tidak melanggar janji).<br><br>
+      <strong> Contoh matematika:</strong> "Jika x adalah bilangan genap (p), maka x dapat dibagi 2 tanpa sisa (q)." → selalu benar (tautologi) karena definisi bilangan genap.
+    </div>
+  </div>
+
+  <!-- 5. BIIMPLIKASI (p ↔ q) -->
+  <div class="materi-card">
+    <div class="judul-section">
+      <span> 5. Biimplikasi (↔)</span>
+      <span class="simbol">p ↔ q</span>
+    </div>
+    <div class="pengertian">
+      <strong> Pengertian:</strong> Biimplikasi adalah pernyataan majemuk dua arah: "<strong>p jika dan hanya jika q</strong>".<br>
+      Artinya p dan q harus sama-sama benar atau sama-sama salah. Biimplikasi menyatakan kesetaraan (ekuivalensi).
+    </div>
+    <div class="rumus">
+      <strong> Notasi:</strong> p ↔ q &nbsp;|&nbsp; dibaca: "<strong>p jika dan hanya jika q</strong>" (disingkat <em>p iff q</em>)
+    </div>
+    <div class="sub-title"> Tabel Kebenaran Biimplikasi</div>
+    <table>
+      <thead><tr><th>p</th><th>q</th><th>p ↔ q</th></tr></thead>
+      <tbody>
+        <tr><td>B</td><td>B</td><td class="badge-benar">B</td></tr>
+        <tr><td>B</td><td>S</td><td class="badge-salah">S</td></tr>
+        <tr><td>S</td><td>B</td><td class="badge-salah">S</td></tr>
+        <tr><td>S</td><td>S</td><td class="badge-benar">B</td></tr>
+      </tbody>
+    </table>
+    <div class="catatan">
+       Biimplikasi bernilai <strong>benar</strong> hanya ketika kedua pernyataan memiliki nilai kebenaran yang <strong>sama</strong>.
+    </div>
+    <div class="contoh">
+      <strong> Contoh sehari-hari:</strong> "Seorang siswa lulus ujian (p) <strong>jika dan hanya jika</strong> ia mendapatkan nilai minimal 70 (q)."<br>
+      - Lulus dan nilai ≥70 → benar <br>
+      - Tidak lulus dan nilai <70 → benar <br>
+      - Lulus tapi nilai <70 → salah <br>
+      - Tidak lulus tapi nilai ≥70 → salah <br><br>
+      <strong> Contoh matematika:</strong> "Segitiga ABC sama sisi (p) ↔ ketiga sudutnya 60° (q)"<br>
+      Atau: "Bilangan bulat n genap (p) ↔ n habis dibagi 2 (q)".
+    </div>
+    <a href="https://youtu.be/YmcgeXjOe7Y?si=NMsx6SHkqlvghIsE">
+    Tonton video berikut
+</a>
+  </div>
+
+  
+  <div class="materi-card">
+    <div class="judul-section">
+      <span>Perbedaan</span>
+    </div>
+    <div class="grid-ringkasan">
+      <div class="ringkasan-tabel" style="flex:1;">
+        <table style="min-width: 260px;">
+          <thead>
+            <tr><th>Aspek</th><th>Implikasi (p → q)</th><th>Biimplikasi (p ↔ q)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Arah</strong></td><td>Satu arah</td><td>Dua arah (timbal balik)</td></tr>
+            <tr><td><strong>Dibaca</strong></td><td>"Jika p maka q"</td><td>"p jika dan hanya jika q"</td></tr>
+            <tr><td><strong>Benar ketika</strong></td><td>p salah ATAU q benar</td><td>p dan q sama-sama benar/salah</td></tr>
+            <tr><td><strong>Nilai salah</strong></td><td>Hanya ketika p benar , q salah</td><td>Ketika p dan q berbeda nilai kebenaran</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="flex:1; background: #f8fafc; border-radius: 24px; padding: 1rem 1.2rem;">
+        <p style="font-weight: 600;"> Intuisi sederhana:</p>
+        <ul style="margin-left: 1.2rem; margin-top: 0.3rem;">
+          <li><strong>Implikasi</strong> → "Jika P maka Q" tidak menjamin sebaliknya.</li>
+          <li><strong>Biimplikasi</strong> → P dan Q setara, keduanya saling membawa.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="catatan" style="margin-top: 1.2rem;">
+       Dalam logika matematika, biimplikasi sering digunakan untuk mendefinisikan suatu konsep atau menyatakan dua pernyataan yang ekuivalen.
+    </div>
+  </div>
+
+  
+  <div class="footer">
+    <p> <strong>B = Benar &nbsp;&nbsp;|&nbsp;&nbsp; S = Salah</strong><br>
+    Materi lengkap: Pernyataan, Konjungsi, Disjungsi, Implikasi, Biimplikasi. Berdasarkan sumber pembelajaran logika matematika SMA.</p>
+    <p style="margin-top: 0.3rem;">© Belajar Logika | mudah dipahami dengan tabel kebenaran & contoh nyata</p>
+  </div>
+</div>
+</body>
+</html>
